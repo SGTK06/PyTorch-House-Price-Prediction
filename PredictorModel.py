@@ -12,6 +12,11 @@ class HousePricePredictor(nn.Module):
         This is a simple feedforward neural network referred to as
         a Multi-Layer Perceptron (MLP)
 
+        input(input_dim) ->
+        hidden layer 1 (128 dim) ->
+        hidden layer 2 (32 dim) ->
+        output_layer(1 dim)
+
         :definitions:
         feed-forward -> sequential flow from one layer to another
                         (no loops or branches)
@@ -23,7 +28,7 @@ class HousePricePredictor(nn.Module):
                           a prediction
         """
         super().__init__()
-        self.input_layer = nn.Linear(
+        self.hidden_layer_1 = nn.Linear(
             in_features=input_dim,
             out_features=128
         )
@@ -63,7 +68,7 @@ class HousePricePredictor(nn.Module):
 
         :param x: Input for model to predict the output
         """
-        n1 = self.input_layer(x)
+        n1 = self.hidden_layer_1(x)
         a1 = self.activation1(n1)
         n2 = self.hidden_layer(a1)
         a2 = self.activation2(n2)
