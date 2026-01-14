@@ -8,7 +8,7 @@ def model_validation_epoch(model : nn.Module,
                            loss_function : nn.Module,
                            device : device):
     """
-    Docstring for model_training_epoch
+    Docstring for model_validation_epoch
 
     :param model: The neural network to be trained
     :type model: nn.Module
@@ -17,9 +17,6 @@ def model_validation_epoch(model : nn.Module,
     :param loss_function: Loss function for calculating the loss by comparing prediction and expected output
                           loss.backward() performs backpropagation
     :type loss_function: nn.Module (parent base class for loss functions)
-    :param optimizer: To perform corrections according to calculated loss to get better outputs
-                      Adjusts weights and biases during training to minimize the loss function
-    :type optimizer: Optimizer
     :param device: The device on which the model training takes place
                    (cuda cores in nvidia gpu (if available) OR cpu)
     :type device: device

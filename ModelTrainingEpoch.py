@@ -10,7 +10,8 @@ def model_training_epoch(model : nn.Module,
                          optimizer : Optimizer,
                          device : device):
     """
-    Docstring for model_training_epoch
+    One epoch of model training (One complete forward pass and back propagation step for all
+    inputs and outputs in dataset)
 
     :param model: The neural network to be trained
     :type model: nn.Module
@@ -34,16 +35,13 @@ def model_training_epoch(model : nn.Module,
         input_batch, output_batch = input_batch.to(device), output_batch.to(device)
         current_batch_loss = 0.0
 
-        optimizer.zero_grad()
-        predictions = model(input_batch)
-        loss = loss_function(predictions, output_batch)
-        loss.backward()
+        optimizer.zero_grad() #reset the calculated gradient to 0
+        predictions = model(input_batch) #calculate the predicted output for current input batch
+        loss = loss_function(predictions, output_batch) #calculate the difference between expected and predicted outputs
+        loss.backward() #perform gradient
         optimizer.step()
 
-        current_batch_loss += abs(loss.item())
-        average_batch_loss = current_batch_loss/len(input_batch)
-        #can print avg batch loss if needed
-        total_epoch_loss += average_batch_loss
+        total_epoch_loss += abs(loss.item())
 
     average_epoch_loss = total_epoch_loss/len(training_data_loader)
     return average_epoch_loss
