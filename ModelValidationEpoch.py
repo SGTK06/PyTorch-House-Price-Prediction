@@ -26,16 +26,13 @@ def model_validation_epoch(model : nn.Module,
     total_epoch_loss = 0.0
 
     with torch.no_grad():
-        for idx, (input_batch, output_batch) in enumerate(validation_data_loader):
-            current_batch_loss = 0.0
+        for input_batch, output_batch in validation_data_loader:
+            input_batch, output_batch = input_batch.to(device), output_batch.to(device)
 
             predictions = model(input_batch)
             loss = loss_function(predictions, output_batch)
 
-            current_batch_loss += abs(loss.item())
-            average_batch_loss = current_batch_loss/len(input_batch)
-            #can print avg batch loss if needed
-            total_epoch_loss += average_batch_loss
+            total_epoch_loss += loss.item()
 
     average_epoch_loss = total_epoch_loss/len(validation_data_loader)
     return average_epoch_loss
