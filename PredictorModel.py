@@ -32,12 +32,12 @@ class HousePricePredictor(nn.Module):
             in_features=input_dim,
             out_features=128
         )
-        self.activation1 = nn.ReLU()
+        self.activation1 = nn.Tanh()
         self.hidden_layer = nn.Linear(
             in_features=128,
             out_features=32
         )
-        self.activation2 = nn.ReLU()
+        self.activation2 = nn.Tanh()
         self.output_layer = nn.Linear(
             in_features=32,
             out_features=1
