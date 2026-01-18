@@ -30,11 +30,11 @@ class HousePricePredictor(nn.Module):
         super().__init__()
         self.hidden_layer_1 = nn.Linear(
             in_features=input_dim,
-            out_features=128
+            out_features=64
         )
         self.activation1 = nn.Tanh()
         self.hidden_layer = nn.Linear(
-            in_features=128,
+            in_features=64,
             out_features=32
         )
         self.activation2 = nn.Tanh()
